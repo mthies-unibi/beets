@@ -60,7 +60,7 @@ if ! _retrieve_cache beetscmds || _cache_invalid beetscmds; then
          END {print ""}'
     }
     # Variables used for completing subcommands and queries
-    subcommands=(${${(f)"$(beet help | _join_lines ' ' 3 'Commands:')"}[@]})
+    subcommands=(${${(f)"$(beet help | _join_lines ' ' '^[[:space:]]?[[:space:]]?[[:space:]]?[^[:space:]]' 'Commands:')"}[@]})
     fields=($(beet fields | grep -G '^  ' | sort -u | colrm 1 2))
     for field in "${fields[@]}"
     do
